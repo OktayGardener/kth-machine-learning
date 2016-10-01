@@ -14,6 +14,15 @@ class DecisionTree:
         self.monk3 = dataset.monk3
         self.monk3test = dataset.monk3test
 
+    def datasets(self):
+        return [self.monk1, self.monk2, self.monk3]
+
+    def test_datasets(self):
+        return [self.monk1test, self.monk2test, self.monk3test]
+
+    def all_datasets(self):
+        return self.datasets, self.test_datasets
+
     def calc_entropy(self):
         e_m1 = dt.entropy(self.monk1)
         e_m2 = dt.entropy(self.monk2)
@@ -30,6 +39,7 @@ class DecisionTree:
             monk2.append(dt.averageGain(self.monk2, x))
             monk3.append(dt.averageGain(self.monk3, x))
         return [monk1, monk2, monk3] # [ [] , [] , [] ]
+
 
 def main():
     dtree = DecisionTree(dt, dataset)
@@ -61,6 +71,8 @@ def main():
     # therefore, a _ 5 minimizes MONK-1 and MONK-3 uncertainty
 
     # Assignment 3
+    print dt.select(dtree.monk1, dataset.attributes[4], 1)
+
 
 if __name__ == '__main__':
     main()
